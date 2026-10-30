@@ -1,64 +1,85 @@
-/* ===== ANIMASI ===== */
+/* ===== ANIMASI v2 (Gen-Z) ===== */
+:root{--lime:#d7ff4f;--black:#0b120b}
 body{overflow-x:clip}
-.pb{position:fixed;top:0;left:0;right:0;height:4px;background:var(--matcha);transform-origin:left;transform:scaleX(0);z-index:98}
-.nav a{text-decoration:none!important;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size .3s}
-.nav a:hover{background-size:100% 2px}
-/* huruf melompat */
-.ch{display:inline-block;transition:transform .25s cubic-bezier(.3,1.8,.5,1),color .2s}
-.ch:hover{transform:translateY(-10px) rotate(-5deg)}
-.hero .ch:hover{color:var(--cream)}
-.hero h1 .ch{animation:drop .9s cubic-bezier(.3,1.5,.5,1) calc(var(--i)*.07s + .2s) backwards}
-.rvh .ch{animation:up .7s cubic-bezier(.3,1.4,.5,1) calc(var(--i)*.04s) backwards;animation-play-state:paused}
-.rvh.in .ch{animation-play-state:running}
-@keyframes drop{from{opacity:0;transform:translateY(-130%) rotate(-14deg) scale(.6)}}
-@keyframes up{from{opacity:0;transform:translateY(70%) rotate(8deg)}}
-@keyframes fade{from{opacity:0;transform:translateY(12px)}}
-/* hero */
-.hero h1{transform:translate3d(calc(var(--mx,0)*-26px),calc(var(--my,0)*-12px),0)}
-.hero .cut{transform:translate3d(calc(-50% + var(--mx,0)*16px),calc(var(--my,0)*8px),0);transition:transform .2s ease-out;animation:rise 1.1s cubic-bezier(.2,1.2,.4,1) .6s backwards;cursor:pointer}
-@keyframes rise{from{opacity:0;transform:translate3d(-50%,45%,0)}}
-.hero .nav,.hero .intro,.hero .foot{animation:fade 1s 1s backwards}
-.blob{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(163,196,106,.35),rgba(143,174,92,.04));animation:float var(--t,12s) ease-in-out infinite alternate;pointer-events:none;z-index:0}
-@keyframes float{to{transform:translate(var(--dx,30px),var(--dy,-40px)) scale(1.25)}}
-/* pita berjalan */
-.mq{background:var(--matcha);color:var(--forest);overflow:hidden;transform:rotate(-1.5deg);margin:-22px -3% 0;position:relative;z-index:4;padding:14px 0;font:400 clamp(22px,3vw,34px)/1 'Anton','Impact',sans-serif;text-transform:uppercase;box-shadow:0 8px 24px rgba(30,42,30,.25)}
-.mq-t{display:flex;align-items:center;gap:28px;width:max-content;animation:mq 26s linear infinite}
-.mq:hover .mq-t{animation-play-state:paused}
-.mq .dot{width:12px;height:12px;border-radius:50%;background:var(--forest);flex:none}
-@keyframes mq{to{transform:translateX(-50%)}}
-/* muncul saat scroll */
-.js .rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1),background .2s;transition-delay:var(--d,0s)}
-.js .rv.in{opacity:1;transform:none}
-.js .disc.rv{transform:scale(.55) rotate(-10deg);transition:opacity .6s,transform .9s cubic-bezier(.3,1.5,.5,1)}
-.js .disc.rv.in{transform:perspective(800px) rotateX(calc(var(--ty,0)*1deg)) rotateY(calc(var(--tx,0)*1deg))}
-.js .disc.rv.done{transition:transform .15s ease-out}
-.js .disc.rv .cut{opacity:0;transform:translate(-50%,28%);transition:opacity .5s .3s,transform .8s .3s cubic-bezier(.3,1.4,.5,1)}
-.js .disc.rv.in .cut{opacity:1;transform:translateX(-50%)}
-.disc{isolation:isolate}
-.disc::after{content:"";position:absolute;inset:-5%;border:2px dashed var(--deep);border-radius:50%;opacity:.55;z-index:-1;animation:spin 28s linear infinite}
+.pl-on{overflow:hidden}
+.pl-on body>*:not(.pl){visibility:hidden}
+.pl{position:fixed;inset:0;z-index:200;background:var(--forest);color:var(--matcha);display:flex;flex-direction:column;justify-content:flex-end;padding:var(--pad);font-family:'Anton','Impact',sans-serif;text-transform:uppercase;transition:transform .9s cubic-bezier(.77,0,.18,1),border-radius .9s;border-radius:0 0 50% 50%/0 0 0 0}
+.pl.out{transform:translateY(-105%);border-radius:0 0 50% 50%/0 0 14vw 14vw}
+.pl .n{font-size:clamp(120px,26vw,380px);line-height:.8;font-weight:400}
+.pl span{font-size:clamp(20px,3vw,36px);color:var(--lime);margin-bottom:14px}
+.pl i{position:absolute;left:0;bottom:0;height:8px;background:var(--lime);width:0}
+.pb{position:fixed;top:0;left:0;right:0;height:5px;background:var(--lime);transform-origin:left;transform:scaleX(0);z-index:98}
+.nav a{text-decoration:none!important;background:linear-gradient(currentColor,currentColor) 0 100%/0 3px no-repeat;transition:background-size .3s}
+.nav a:hover{background-size:100% 3px}
+/* huruf hero: slam */
+.ch{display:inline-block;transition:transform .25s cubic-bezier(.3,1.8,.5,1),color .15s}
+.ch:hover{transform:translateY(-14px) rotate(-6deg);color:var(--lime)}
+.js .hero h1 .ch{opacity:0}
+.go .hero h1 .ch{opacity:1;animation:hs .8s cubic-bezier(.2,1.5,.4,1) calc(var(--i)*.06s) backwards}
+@keyframes hs{from{opacity:0;transform:translateY(-150%) rotate(calc((var(--i) - 4)*6deg)) scale(.4)}}
+.js .hero .cut,.js .hero .nav,.js .hero .intro,.js .hero .foot,.js .stk,.js .badge{opacity:0}
+.go .hero .nav,.go .hero .intro,.go .hero .foot{opacity:1;animation:fade 1s .9s backwards}
+.go .hero .cut{opacity:1;animation:rise 1s cubic-bezier(.2,1.3,.4,1) .5s backwards}
+@keyframes rise{from{opacity:0;transform:translate3d(-50%,60%,0)}}
+@keyframes fade{from{opacity:0;translate:0 14px}}
+/* glitch */
+.hero h1.gl{animation:gl .45s steps(2) 1}
+@keyframes gl{0%,100%{text-shadow:none}20%{text-shadow:6px 0 var(--lime),-6px 0 #eef3e3;translate:5px 0}40%{text-shadow:-7px 3px var(--lime),7px -3px #eef3e3;translate:-6px 2px}60%{text-shadow:5px -2px var(--lime),-5px 2px #eef3e3;translate:3px -3px}80%{text-shadow:-4px 0 var(--lime),4px 0 #eef3e3;translate:-2px 0}}
+/* parallax scroll + mouse */
+.hero h1{transform:translate3d(calc(var(--mx,0)*-26px),calc(var(--my,0)*-12px + var(--sy,0)*-.32px),0)}
+.hero .cut{transform:translate3d(calc(-50% + var(--mx,0)*16px),calc(var(--my,0)*8px + var(--sy,0)*.1px),0);transition:transform .2s ease-out;cursor:pointer}
+/* efek stiker */
+.hero .cut,.disc .cut{filter:drop-shadow(3px 0 0 #eef3e3) drop-shadow(-3px 0 0 #eef3e3) drop-shadow(0 3px 0 #eef3e3) drop-shadow(0 -3px 0 #eef3e3) drop-shadow(7px 9px 0 rgba(0,0,0,.3))}
 .disc .cut{cursor:pointer}
-@keyframes spin{to{transform:rotate(360deg)}}
-/* kartu, tile, tombol */
-.js .card.rv.in:hover{transform:translateY(-8px) rotate(-1.2deg);box-shadow:0 18px 34px rgba(30,42,30,.22)}
-.card{transition:box-shadow .35s}
-.card b{transition:color .2s}.card:hover b{color:var(--deep)}
+.badge{position:absolute;right:calc(var(--pad) + 4px);top:20%;width:clamp(90px,11vw,150px);z-index:4;animation:spin 14s linear infinite;fill:var(--lime);font:400 13px 'Anton','Impact',sans-serif;letter-spacing:.06em}
+.go .badge{opacity:1;transition:opacity .6s 1.3s}
+.stk{position:absolute;z-index:4;padding:9px 20px;border:3px solid var(--black);border-radius:999px;font:600 14px 'Archivo',Arial,sans-serif;text-transform:uppercase;letter-spacing:.04em;cursor:grab;user-select:none;touch-action:none;color:var(--forest);background:var(--lime);box-shadow:4px 4px 0 var(--black);rotate:var(--r)}
+.stk:nth-of-type(2){background:var(--matcha)}.stk:nth-of-type(3){background:#eef3e3}
+.go .stk{opacity:1;animation:stk .7s cubic-bezier(.3,1.6,.5,1) calc(1.3s + var(--k)*.15s) backwards}
+.stk.drag{cursor:grabbing;scale:1.12;box-shadow:9px 9px 0 var(--black);transition:scale .15s}
+@keyframes stk{from{opacity:0;scale:0;rotate:50deg}}
+/* pita bersilangan */
+.mq{overflow:hidden;position:relative;z-index:5;padding:14px 0;font:400 clamp(24px,3.4vw,40px)/1 'Anton','Impact',sans-serif;text-transform:uppercase;color:var(--forest);border-block:3px solid var(--black)}
+.mq.a{background:var(--lime);transform:rotate(-2deg);margin:-34px -4% 0}
+.mq.b{background:var(--matcha);transform:rotate(1.6deg);margin:-50px -4% 0;z-index:4}
+.mq-t{display:flex;align-items:center;gap:30px;width:max-content;will-change:transform}
+.mq .dot{width:14px;height:14px;background:var(--forest);transform:rotate(45deg);flex:none}
+/* muncul saat scroll */
+.js .rv{opacity:0;translate:0 40px;scale:.92;rotate:-2deg;transition:opacity .6s ease,translate .8s cubic-bezier(.2,1.3,.4,1),scale .8s cubic-bezier(.2,1.3,.4,1),rotate .8s cubic-bezier(.2,1.3,.4,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;translate:0 0;scale:1;rotate:0deg}
+.js .disc.rv{scale:.4;rotate:-25deg;translate:none}
+.js .disc.rv.in{scale:1;rotate:0deg}
+.js .disc.rv .cut{opacity:0;translate:0 30%;transition:opacity .4s .35s,translate .8s .35s cubic-bezier(.3,1.5,.5,1)}
+.js .disc.rv.in .cut{opacity:1;translate:0 0}
+.disc{isolation:isolate;transform:perspective(800px) rotateX(calc(var(--ty,0)*1deg)) rotateY(calc(var(--tx,0)*1deg));transition:transform .15s ease-out}
+.disc::after{content:"";position:absolute;inset:-6%;border:3px dashed var(--forest);border-radius:50%;opacity:.5;z-index:-1;animation:spin 24s linear infinite}
+@keyframes spin{to{rotate:360deg}}
+/* judul slam */
+.ln{display:inline-block}
+.js .rvh:not(.in) .ln{opacity:0}
+.rvh.in .ln{animation:slam .65s cubic-bezier(.2,1.4,.4,1) calc(var(--i)*.16s) backwards}
+@keyframes slam{from{opacity:0;transform:scale(1.9) rotate(-7deg) translateY(-20px)}55%{transform:scale(.93) rotate(1.5deg)}}
+/* kartu brutal */
+.card{position:relative;overflow:hidden;border:3px solid var(--forest);border-radius:18px;transform:perspective(700px) rotateX(calc(var(--ry,0)*1deg)) rotateY(calc(var(--rx,0)*1deg));transition:transform .15s ease-out,box-shadow .2s}
+.card:hover{box-shadow:8px 8px 0 var(--forest)}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.5),transparent 55%);opacity:0;transition:opacity .2s;pointer-events:none}
+.card:hover::after{opacity:1}
 .tile{transition:transform .3s cubic-bezier(.3,1.8,.5,1)}
-.js .tile.rv.in:hover{transform:translateY(-6px) rotate(-5deg) scale(1.1)}
-.btn{position:relative;overflow:hidden}
-.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:rgba(255,255,255,.28);transform:skewX(-20deg);transition:left .6s}
-.btn:hover::after{left:130%}
+.tile:hover{transform:translateY(-8px) rotate(-6deg) scale(1.12)}
+.btn{position:relative;overflow:hidden;border:3px solid var(--forest);box-shadow:5px 5px 0 var(--forest);transition:box-shadow .2s,background .2s}
+.btn:hover{box-shadow:9px 9px 0 var(--matcha)}
 .lb:not([hidden]){animation:fadein .25s}
-.lb:not([hidden]) .box{animation:pop .45s cubic-bezier(.3,1.4,.5,1)}
+.lb:not([hidden]) .box{animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
 @keyframes fadein{from{opacity:0}}
-@keyframes pop{from{opacity:0;transform:scale(.8) translateY(30px)}}
+@keyframes pop{from{opacity:0;transform:scale(.7) rotate(-5deg)}}
 /* kursor + confetti */
-.cur{position:fixed;top:0;left:0;width:34px;height:34px;border:2px solid var(--matcha);border-radius:50%;pointer-events:none;z-index:99;opacity:0;transition:width .25s,height .25s,background .25s,margin .25s}
-.cur.big{width:58px;height:58px;margin:-12px 0 0 -12px;background:rgba(143,174,92,.25)}
-.cf{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:99;animation:cf .9s cubic-bezier(.1,.7,.3,1) forwards}
-@keyframes cf{to{transform:translate(var(--x),var(--y)) scale(.3);opacity:0}}
+.cur{position:fixed;top:0;left:0;width:30px;height:30px;translate:-50% -50%;border:2px solid var(--lime);background:rgba(143,174,92,.35);border-radius:50%;pointer-events:none;z-index:99;opacity:0;display:grid;place-items:center;font:700 11px 'Archivo',Arial,sans-serif;color:var(--black);mix-blend-mode:normal;transition:width .25s,height .25s,background .25s}
+.cur.big{width:84px;height:84px;background:var(--lime);border-color:var(--black)}
+.cf{position:fixed;width:12px;height:12px;pointer-events:none;z-index:99;animation:cf 1s cubic-bezier(.1,.7,.3,1) forwards}
+@keyframes cf{to{transform:translate(var(--x),var(--y)) rotate(540deg) scale(.3);opacity:0}}
+@media(max-width:760px){.badge{top:14%;width:84px}.stk{font-size:12px;padding:7px 14px}}
 @media(prefers-reduced-motion:reduce){
- .js .rv{opacity:1;transform:none;transition:none}
- .js .disc.rv .cut{opacity:1;transform:translateX(-50%);transition:none}
- .ch,.blob,.mq-t,.disc::after,.hero .cut,.hero .nav,.hero .intro,.hero .foot{animation:none!important}
- .cur,.pb{display:none}
+ .js .rv,.js .disc.rv,.js .disc.rv .cut{opacity:1;translate:none;scale:1;rotate:0deg;transition:none}
+ .ch,.badge,.disc::after,.hero h1.gl,.go .stk,.go .hero .cut,.rvh.in .ln{animation:none!important}
+ .cur,.pb,.pl{display:none}
 }
