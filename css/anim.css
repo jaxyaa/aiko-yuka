@@ -1,0 +1,64 @@
+/* ===== ANIMASI ===== */
+body{overflow-x:clip}
+.pb{position:fixed;top:0;left:0;right:0;height:4px;background:var(--matcha);transform-origin:left;transform:scaleX(0);z-index:98}
+.nav a{text-decoration:none!important;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size .3s}
+.nav a:hover{background-size:100% 2px}
+/* huruf melompat */
+.ch{display:inline-block;transition:transform .25s cubic-bezier(.3,1.8,.5,1),color .2s}
+.ch:hover{transform:translateY(-10px) rotate(-5deg)}
+.hero .ch:hover{color:var(--cream)}
+.hero h1 .ch{animation:drop .9s cubic-bezier(.3,1.5,.5,1) calc(var(--i)*.07s + .2s) backwards}
+.rvh .ch{animation:up .7s cubic-bezier(.3,1.4,.5,1) calc(var(--i)*.04s) backwards;animation-play-state:paused}
+.rvh.in .ch{animation-play-state:running}
+@keyframes drop{from{opacity:0;transform:translateY(-130%) rotate(-14deg) scale(.6)}}
+@keyframes up{from{opacity:0;transform:translateY(70%) rotate(8deg)}}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}}
+/* hero */
+.hero h1{transform:translate3d(calc(var(--mx,0)*-26px),calc(var(--my,0)*-12px),0)}
+.hero .cut{transform:translate3d(calc(-50% + var(--mx,0)*16px),calc(var(--my,0)*8px),0);transition:transform .2s ease-out;animation:rise 1.1s cubic-bezier(.2,1.2,.4,1) .6s backwards;cursor:pointer}
+@keyframes rise{from{opacity:0;transform:translate3d(-50%,45%,0)}}
+.hero .nav,.hero .intro,.hero .foot{animation:fade 1s 1s backwards}
+.blob{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(163,196,106,.35),rgba(143,174,92,.04));animation:float var(--t,12s) ease-in-out infinite alternate;pointer-events:none;z-index:0}
+@keyframes float{to{transform:translate(var(--dx,30px),var(--dy,-40px)) scale(1.25)}}
+/* pita berjalan */
+.mq{background:var(--matcha);color:var(--forest);overflow:hidden;transform:rotate(-1.5deg);margin:-22px -3% 0;position:relative;z-index:4;padding:14px 0;font:400 clamp(22px,3vw,34px)/1 'Anton','Impact',sans-serif;text-transform:uppercase;box-shadow:0 8px 24px rgba(30,42,30,.25)}
+.mq-t{display:flex;align-items:center;gap:28px;width:max-content;animation:mq 26s linear infinite}
+.mq:hover .mq-t{animation-play-state:paused}
+.mq .dot{width:12px;height:12px;border-radius:50%;background:var(--forest);flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* muncul saat scroll */
+.js .rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1),background .2s;transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .disc.rv{transform:scale(.55) rotate(-10deg);transition:opacity .6s,transform .9s cubic-bezier(.3,1.5,.5,1)}
+.js .disc.rv.in{transform:perspective(800px) rotateX(calc(var(--ty,0)*1deg)) rotateY(calc(var(--tx,0)*1deg))}
+.js .disc.rv.done{transition:transform .15s ease-out}
+.js .disc.rv .cut{opacity:0;transform:translate(-50%,28%);transition:opacity .5s .3s,transform .8s .3s cubic-bezier(.3,1.4,.5,1)}
+.js .disc.rv.in .cut{opacity:1;transform:translateX(-50%)}
+.disc{isolation:isolate}
+.disc::after{content:"";position:absolute;inset:-5%;border:2px dashed var(--deep);border-radius:50%;opacity:.55;z-index:-1;animation:spin 28s linear infinite}
+.disc .cut{cursor:pointer}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* kartu, tile, tombol */
+.js .card.rv.in:hover{transform:translateY(-8px) rotate(-1.2deg);box-shadow:0 18px 34px rgba(30,42,30,.22)}
+.card{transition:box-shadow .35s}
+.card b{transition:color .2s}.card:hover b{color:var(--deep)}
+.tile{transition:transform .3s cubic-bezier(.3,1.8,.5,1)}
+.js .tile.rv.in:hover{transform:translateY(-6px) rotate(-5deg) scale(1.1)}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:rgba(255,255,255,.28);transform:skewX(-20deg);transition:left .6s}
+.btn:hover::after{left:130%}
+.lb:not([hidden]){animation:fadein .25s}
+.lb:not([hidden]) .box{animation:pop .45s cubic-bezier(.3,1.4,.5,1)}
+@keyframes fadein{from{opacity:0}}
+@keyframes pop{from{opacity:0;transform:scale(.8) translateY(30px)}}
+/* kursor + confetti */
+.cur{position:fixed;top:0;left:0;width:34px;height:34px;border:2px solid var(--matcha);border-radius:50%;pointer-events:none;z-index:99;opacity:0;transition:width .25s,height .25s,background .25s,margin .25s}
+.cur.big{width:58px;height:58px;margin:-12px 0 0 -12px;background:rgba(143,174,92,.25)}
+.cf{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:99;animation:cf .9s cubic-bezier(.1,.7,.3,1) forwards}
+@keyframes cf{to{transform:translate(var(--x),var(--y)) scale(.3);opacity:0}}
+@media(prefers-reduced-motion:reduce){
+ .js .rv{opacity:1;transform:none;transition:none}
+ .js .disc.rv .cut{opacity:1;transform:translateX(-50%);transition:none}
+ .ch,.blob,.mq-t,.disc::after,.hero .cut,.hero .nav,.hero .intro,.hero .foot{animation:none!important}
+ .cur,.pb{display:none}
+}
